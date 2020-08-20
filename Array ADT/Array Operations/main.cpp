@@ -195,8 +195,11 @@ void Reverse2(struct Array *arrptr){
     }
 }
 void InsertSorted(struct Array *arrptr,int x){
+if(arrptr->Length==arrptr->Size)
+    return;
+
  int i=arrptr->Length-1;
- while(arrptr->A[i]>x){
+ while(i!=-1&&arrptr->A[i]>x){
     arrptr->A[i+1]=arrptr->A[i];
     i--;
  }
@@ -231,16 +234,130 @@ void Rearrange(struct Array *arrptr){
 
 }
 
+//merging 2 arrays
+Array* Merge(struct Array arr1,struct Array arr2){
+    int i,j,k;
+    i=j=k=0;
+
+    Array* C=new(struct Array);
+    C->Size=20;
+    while(i<arr1.Length&&j<arr2.Length){
+        if (arr1.A[i]<arr2.A[j])
+            C->A[k++]=arr1.A[i++];
+        else{
+            C->A[k++]=arr2.A[j++];
+        }
+    }
+    for(;i<arr1.Length;i++){
+        C->A[k++]=arr1.A[i];
+    }
+    for(;j<arr2.Length;j++){
+        C->A[k++]=arr2.A[j];
+    }
+
+    C->Length=k;
+    return C;
+
+
+
+
+
+
+}
+//set Operation in a sorted Array as it is more efficient
+
+Array* SortedUnion(struct Array arr1,struct Array arr2){
+    Array* C=new Array;
+    C->Size=20;
+    int i,j,k;
+    i=j=k=0;
+    while(i<arr1.Length && j<arr2.Length){
+        if (arr1.A[i]<arr2.A[j])
+            C->A[k++]=arr1.A[i++];
+        else if (arr2.A[j]<arr1.A[i])
+            C->A[k++]=arr2.A[j++];
+        else{
+            C->A[k++]=arr1.A[i++];
+            j++;
+        }
+
+
+    }
+    for(;i<arr1.Length;i++)
+        C->A[k++]=arr1.A[i];
+    for(;j<arr2.Length;j++)
+        C->A[k++]=arr2.A[j];
+    C->Length=k;
+    return C;
+
+
+
+}
+
+Array* SortedIntersection(Array arr1,Array arr2){
+    Array* C=new Array;
+    C->Size=20;
+    int i,j,k;
+    i=j=k=0;
+    while(i<arr1.Length && j<arr2.Length){
+        if(arr1.A[i]<arr2.A[j]){
+            i++;
+        }
+        else if(arr2.A[j]<arr1.A[i]){
+            j++;
+        }else{
+        C->A[k++]=arr1.A[i++];
+        j++;
+
+
+        }
+
+    }
+    C->Length=k;
+    return C;
+
+
+
+}
+
+Array* SortedDifference(struct Array arr1,struct Array arr2){
+    Array* C=new Array;
+    C->Size=20;
+    int i,j,k;
+    i=j=k=0;
+    while(i<arr1.Length && j<arr2.Length){
+        if(arr1.A[i]>arr2.A[j])
+            j++;
+        else if(arr1.A[i]<arr2.A[j]){
+            C->A[k++]=arr1.A[i++];
+        }
+        else{
+            i++;
+            j++;
+        }
+    }
+    for(;i<arr1.Length;i++)
+        C->A[k++]=arr1.A[i];
+    C->Length=k;
+    return C;
+
+
+
+}
+
 int main()
 {
 
-    struct Array arr {{-2,3,-5,6,1},20,5};
-    Display(arr);
-    Rearrange(&arr);
+    struct Array arr1 {{7,9,18,21,22},20,5};
+    Display(arr1);
+    struct Array arr2 {{7,9,18,21,28},20,5};
+    Display(arr2);
+    struct Array *arr3=SortedDifference(arr1,arr2);
+    Display(*arr3);
 
 
-    Display(arr);
-    cout<<IsSorted(arr);
+
+
 
 
 
