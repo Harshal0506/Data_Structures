@@ -345,16 +345,217 @@ Array* SortedDifference(struct Array arr1,struct Array arr2){
 
 }
 
+//student Programms
+
+//find Missing Element
+
+
+//1. missing 1 element from a sorted array starting from 1
+int MissingSorted1(Array arr){
+    int Sum=0;
+    int m=Max(arr);
+    for(int i=0;i<arr.Length;i++){
+        Sum+=arr.A[i];
+    }
+    int AssumedSum=m*(m+1)/2;
+    return AssumedSum-Sum;
+
+
+
+
+}
+//2. missing 1 element from a sorted array starting from any integer
+int MissingSorted2(Array arr){
+int diff=arr.A[0];
+for(int i=1;i<arr.Length;i++){
+    if(arr.A[i]-i!=diff){
+        return i+diff;
+
+    }
+
+}
+
+
+}
+//3. Missing n element in a sorted array starting from any integer
+void MissingSorted3(Array arr){
+int diff=arr.A[0];
+for(int i=1;i<arr.Length;i++){
+    if(arr.A[i]-i!=diff){
+        while(diff<arr.A[i]-i){
+            cout<<i+diff<<' ';
+            diff++;
+        }
+    }
+}
+
+
+
+
+}
+//4.Missing element in an unsorted Array
+void MissingUnsorted(Array arr){
+    int m=Max(arr);
+    int *H=new(int[m+1]);
+    for(int i=0;i<m+1;i++){
+        H[i]=0;
+    }
+    for(int i=0;i<arr.Length;i++){
+        H[arr.A[i]]+=1;
+    }
+    for(int i=1;i<=Max(arr);i++){
+        if(H[i]==0)
+            cout<<i<<' ';
+    }
+
+
+    delete []H;
+
+
+}
+
+//finding Dublicates
+
+//1.just finding dublicates in a sorted array(no counter)
+void DublicateSorted(Array arr){
+int previousDublicate=0;
+for(int i=0;i<arr.Length-1;i++){
+    if(arr.A[i+1]==arr.A[i] && arr.A[i]!=previousDublicate){
+        cout<<arr.A[i]<<' ';
+        previousDublicate=arr.A[i];
+    }
+}
+
+
+
+}
+//2.finding dublicates and counting it in a sortedArray
+
+void DublicateSortedCounter(Array arr){
+    int j;
+ for(int i=0;i<arr.Length-1;i++){
+    if (arr.A[i]==arr.A[i+1]){
+        j=i+1;
+        while(arr.A[j]==arr.A[i] && j<arr.Length)j++;
+        cout<<arr.A[i]<<' '<<j-i<<endl;
+        i=j-1;
+    }
+ }
+
+}
+//unsorted array(more general)
+//3.finding just dublicates in an unsorted array(memory friendly takes more time)
+void DublicateUnsortedCounter(Array arr){
+    int Count;
+for(int i=0;i<arr.Length-1;i++){
+
+if(arr.A[i]!=-1){
+    Count=1;
+    for(int j=i+1;j<arr.Length;j++){
+        if(arr.A[i]==arr.A[j]){
+            Count+=1;
+            arr.A[j]=-1;
+
+        }
+    }
+    if(Count>1)
+        cout<<arr.A[i]<<' '<<Count<<endl;
+}
+}
+
+
+
+}
+//3.finding just dublicates in an unsorted array(time friendly takes more memory)
+void DublicateUnsortedCounter2(Array arr){
+    int m=Max(arr);
+    int *H=new(int[m+1]);
+    for(int i=0;i<=m;i++){
+        H[i]=0;
+    }
+    for(int i=0;i<arr.Length;i++){
+        H[arr.A[i]]+=1;
+    }
+    for(int i=0;i<=m;i++){
+        if(H[i]>1)
+            cout<<i<<' '<<H[i]<<endl;
+    }
+    delete []H;
+    H=NULL;
+}
+
+//finding pairs with sum K
+//1.unsorted array implement using hash check another if there mark it precence and print the pair else just mark presence of other
+//2. dont use memory and use time and check through all possible combination if sum is k using 2 pointer
+//3.sorted array if sum=k I will implement this
+void SortedSumK(Array arr,int k){
+int i,j;
+i=0;
+j=arr.Length-1;
+while(i<j){
+    if (arr.A[i]+arr.A[j]==k){
+        cout<<arr.A[i]<<' '<<arr.A[j]<<endl;
+        i++;
+        j--;
+    }
+    else if(arr.A[i]+arr.A[j]>k)
+        j--;
+    else
+        i++;
+
+
+
+}
+
+
+}
+
+
 int main()
 {
+/*
+    struct Array arr1 {{},20,0};
+    int ch,index,x;
+    do
+ {
+ printf("\n\nMenu\n");
+ printf("1. Insert\n");
+ printf("2. Delete\n");
+ printf("3. Search\n");
+ printf("4. Sum\n");
+ printf("5. Display\n");
+ printf("6.Exit\n");
 
-    struct Array arr1 {{7,9,18,21,22},20,5};
-    Display(arr1);
-    struct Array arr2 {{7,9,18,21,28},20,5};
-    Display(arr2);
-    struct Array *arr3=SortedDifference(arr1,arr2);
-    Display(*arr3);
+ printf("enter you choice ");
+ scanf("%d",&ch);
 
+ switch(ch)
+ {
+ case 1: printf("Enter an element and index");
+ scanf("%d%d",&x,&index);
+ Insert(&arr1,index,x);
+ break;
+ case 2: printf("Enter index ");
+ scanf("%d",&index);
+ x=Delete(&arr1,index);
+ printf("Deleted Element is %d\n",x);
+ break;
+ case 3:printf("Enter element to search ");
+ scanf("%d",&x);
+ index=LinearSearch(arr1,x);
+ printf("Element index %d",index);
+ break;
+ case 4:printf("Sum is %d\n",Sum(arr1));
+ break;
+ case 5:Display(arr1);
+
+ }
+ }while(ch<6);
+*/  //menu driven Program
+
+struct Array arr={{1,3,4,5,6,8,9,10,12,14},20,10};
+
+SortedSumK(arr,9);
 
 
 
