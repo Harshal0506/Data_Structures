@@ -7,7 +7,7 @@ struct Node{
 int Data;
 struct Node* Next;
 
-}*Head;
+}*Head,*Head2,*Head3;
 
 void Create(int A[],int n){
     int i;
@@ -16,6 +16,23 @@ void Create(int A[],int n){
     Head->Data=A[0];
     Head->Next=NULL;
     Last=Head;
+    for(i=1;i<n;i++){
+        t=(struct Node *)malloc(sizeof(struct Node));
+        t->Data=A[i];
+        t->Next=NULL;
+        Last->Next=t;
+        Last=Last->Next;
+
+    }
+}
+
+void Create2(int A[],int n){
+    int i;
+    struct Node *t,*Last;
+    Head2=(struct Node *)malloc(sizeof(struct Node));
+    Head2->Data=A[0];
+    Head2->Next=NULL;
+    Last=Head2;
     for(i=1;i<n;i++){
         t=(struct Node *)malloc(sizeof(struct Node));
         t->Data=A[i];
@@ -340,12 +357,94 @@ void Reverse3(struct Node*Q,struct Node *P){
         P->Next=Q;
     }
 }
+
+void Merge(struct Node *P,struct Node *Q)
+{
+    if(P==NULL){
+        Head3=Q;
+        return ;
+    }
+
+    if(Q==NULL){
+        Head3=P;
+        return;
+        }
+    struct Node *Last=NULL;
+    if(P->Data<Q->Data){
+        Head3=Last=P;
+        P=P->Next;
+
+    }else{
+        Head3=Last=Q;
+        Q=Q->Next;
+
+    }
+    while(P && Q){
+        if(P->Data<Q->Data){
+            Last->Next=P;
+            P=P->Next;
+            Last=Last->Next;
+        }else{
+            Last->Next=Q;
+            Q=Q->Next;
+            Last=Last->Next;
+
+
+        }
+
+
+
+    }
+    if(P) Last->Next=P;
+    if(Q) Last->Next=Q;
+}
+void Concat(struct Node *P,struct Node *Q){
+    Head3=P;
+    while(P->Next){
+        P=P->Next;
+
+    }
+    P->Next=Q;
+
+
+
+
+
+}
+
+bool IsLoop(struct Node *P){
+    struct Node*Q;
+    Q=P;
+    if (P==NULL)
+        return false;
+    do{
+        Q=Q->Next;
+        P=P->Next;
+        P=P?P->Next:P;
+        }while(P && P!=Q);
+    if(P==NULL)
+        return false;
+    else
+        return true;
+
+
+
+
+
+
+
+
+}
 int main(){
-int A[]={1,2,3,4,5,6,7,8,9,10};
- Create(A,10);
- Display(Head);
- Reverse3(NULL,Head);
-Display(Head);
+int A[]={10,20,30,40,50};
+ Create(A,5);
+ /*struct Node*t1,*t2;
+ t1=Head->Next->Next;
+ t2=Head->Next->Next->Next->Next;
+ t2->Next=t1;*/
+
+
+cout<<IsLoop(Head);
 
 
 

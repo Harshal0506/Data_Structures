@@ -1,1 +1,11 @@
-Will be added Soon
+Important thing that will make linked list a cakewalk
+
+1. check the first is method satisfying
+2. check the end is method satisfying
+
+3. check if the LL is empty (head is pointing to null)
+4. if P is  on null and operating P->Data as its not possible
+
+
+
+it just make thing easy actually we should check every case
