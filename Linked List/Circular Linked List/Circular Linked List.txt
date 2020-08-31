@@ -3,8 +3,9 @@ Important thing that will make linked list a cakewalk
 1. check the first is method satisfying
 2. check the end is method satisfying
 
-3. check if the LL is empty (head is pointing to null)
-4. if P is  on null and operating P->Data as its not possible
+3. check if the LL is empty (head is pointing to null) 
+4.making of first node and deletion of last node special case
+5. if P is  on null and operating P->Data as its not possible
 
 
 

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1598864432 source:e:\harshal coding world\data-structures\linked list\intersection of 2 linked list\main.cpp
+	<iostream>
+	<stack>
+	<cmath>
+
