@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1599158683 source:e:\harshal coding world\data-structures\stack\infixtopost(advance paranthesis and right to left assosiativity)\main.cpp
+	<iostream>
+	<cstring>
+	<stack>
+

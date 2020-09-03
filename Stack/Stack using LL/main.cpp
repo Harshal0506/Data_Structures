@@ -9,6 +9,8 @@ struct Node *next;
 
 
 }*top=NULL;
+//not preffered method it should be used when we know only one stack will be created
+//everytime we should take it as a parameter to function
 
 void Push(int x){
     struct Node *t=new Node;

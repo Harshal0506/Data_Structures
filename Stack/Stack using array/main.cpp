@@ -18,11 +18,20 @@ St->Top=-1;
 St->S=new int [St->Size];
 }
 
-void Display(struct Stack St){
+void Display1(struct Stack St){
 for(int i=St.Top;i>=0;i--)
     cout<<St.S[i]<<' ';
     cout<<endl;
 }
+
+void Display2(struct Stack St){
+for(int i=St.Top;i>=0;i--){
+    St.S[i]++;
+    cout<<St.S[i]<<' ';
+}
+    cout<<endl;
+}
+
 
 void Push(struct Stack *St,int x){
 if (St->Top==St->Size-1)
@@ -88,13 +97,9 @@ int main()
     Push(&St,20);
     Push(&St,30);
     Push(&St,40);
-    cout<<isFull(St)<<endl;
-    printf("%d \n",Peek(St,2));
-    Display(St);
-    cout<<Pop(&St)<<endl;
 
-    Display(St);
-
+    Display2(St);
+    Display1(St);
 
     return 0;
 }
