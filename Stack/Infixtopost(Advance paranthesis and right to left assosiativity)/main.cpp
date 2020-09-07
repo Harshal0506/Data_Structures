@@ -6,6 +6,9 @@
 left to right associvity percedence increases as one enter into stack
 
 right to left percedence decreases as one enter into stack percedence decreases (example power)
+
+note that in postfix + cannot be added over another + as left to right percedence
+but ^ can be added over another ^ as percedence decreases inside stack in case of right to left percedence
 */
 
 
