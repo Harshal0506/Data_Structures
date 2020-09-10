@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1599724782 source:e:\harshal coding world\data-structures\queues\queues using stack\main.cpp
+	<iostream>
+	<stack>
+
