@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1599832027 source:e:\harshal coding world\data-structures\trees\creating binary tree\main.cpp
+	<iostream>
+	"Queues.h"
+
+1599830951 e:\harshal coding world\data-structures\trees\creating binary tree\queues.h
+	<iostream>
+
