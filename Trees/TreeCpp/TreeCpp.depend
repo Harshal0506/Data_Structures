@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1599895899 source:e:\harshal coding world\data-structures\trees\treecpp\main.cpp
+	<iostream>
+	"Queue.h"
+
+1599893654 e:\harshal coding world\data-structures\trees\treecpp\queue.h
+
