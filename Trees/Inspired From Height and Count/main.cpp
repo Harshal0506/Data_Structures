@@ -31,9 +31,18 @@ public:
  int Count2degNode(){return Count2degNode(root);}
  int Sum(struct Node *root);
  int Sum(){return Sum(root);}
+ /* same as height*/
  int LongestChain(Node *root);
  int LongestChain(){return LongestChain(root);}
 
+ int leafNodeCount(Node* p);
+ int leafNodeCount(){return leafNodeCount(root);}
+
+
+ int deg1ordeg2NodeCount(Node* p);
+ int deg1ordeg2NodeCount(){ return deg1ordeg2NodeCount(root);}
+ int deg1NodeCount(Node* p);
+ int deg1NodeCount(){return deg1NodeCount(root);}
 
 
  void IterativePreorder(Node*p);
@@ -44,8 +53,24 @@ public:
 
  void IterativePostorder(Node *p);
  void IterativePostorder(){IterativePostorder(root);}
-};
+ void DestroyTree(Node *p);
+~Tree(){
+ DestroyTree(root);
+ }
 
+
+
+ };
+
+
+
+void Tree::DestroyTree(Node *p) {
+    if (p != nullptr){
+        DestroyTree(p->lchild);
+        DestroyTree(p->rchild);
+        delete p;
+    }
+}
 
 void Tree::CreateTree()
 {
@@ -210,6 +235,52 @@ int Tree::LongestChain(struct Node *root)
 
 }
 
+int Tree::leafNodeCount(struct Node *root)
+{
+
+
+ int x=0,y=0;
+ if(root==0)
+ return 0;
+ x=leafNodeCount(root->lchild);
+ y=leafNodeCount(root->rchild);
+ if(!root->lchild && !root->rchild)
+    return x+y+1;
+ return y+x;
+
+}
+
+int Tree::deg1ordeg2NodeCount(struct Node *root)
+{
+
+
+ int x=0,y=0;
+ if(root==0)
+ return 0;
+ x=deg1ordeg2NodeCount(root->lchild);
+ y=deg1ordeg2NodeCount(root->rchild);
+ if(root->lchild || root->rchild)
+    return x+y+1;
+ return x+y;
+
+}
+
+int Tree::deg1NodeCount(Node *p) {
+    int x;
+    int y;
+    if (p != nullptr){
+        x = deg1NodeCount(p->lchild);
+        y = deg1NodeCount(p->rchild);
+        if ((p->lchild!=NULL )^ (p->rchild!=NULL)){
+            return x + y + 1;
+        } else {
+            return x + y;
+        }
+    }
+    return 0;
+}
+
+
 void Tree::IterativePreorder(struct Node *p){
 
 stack <Node*> stk;
@@ -311,8 +382,8 @@ int main()
     t.CreateTree();
     cout<<t.Count()<<endl;
     cout<<t.Count2degNode()<<endl;
-    cout<<"Sum is"<<t.Sum()<<endl;
-    cout<<"Longest Chain is of "<<t.LongestChain()<<"nodes "<<endl;
+    cout<<"deg 1 is"<<t.deg1NodeCount()<<endl;
+    cout<<"deg 1 or 2 is "<<t.deg1ordeg2NodeCount()<<"nodes "<<endl;
     printf("Height is %d ",t.Height());
     return 0;
 
